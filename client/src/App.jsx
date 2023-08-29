@@ -1,26 +1,29 @@
-import Canvas from "./canvas";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Customizer from "./pages/Customizer";
 import Home from "./pages/Home";
-
-
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Canvas from "./canvas";
 
 function App() {
-
+  const user = localStorage.getItem("token");
 
   return (
-
-    <div>
-     
+    <Router> {/* Wrap your App content in a Router */}
       <main className="app transition-all-ease-in">
-        <Home />
-        <Canvas />
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+
+          <Route path="/" element={<Home />} />
+
+        </Routes>
+
         <Customizer />
+        <Canvas />
       </main>
-      
-    </div>
-
-
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
