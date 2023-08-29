@@ -11,7 +11,7 @@ const Shirt = () => {
   const snap = useSnapshot(state);
   const { nodes } = useGLTF('/shirt_baked.glb');
   const [rotationY, setRotationY] = useState(0);
-  const [isRotating, setIsRotating] = useState(true); // State to track rotation
+  const [isRotating, setIsRotating] = useState(false); // Initialize to false
 
   const logoTexture = useTexture(snap.logoDecal);
   const fullTexture = useTexture(snap.fullDecal);
@@ -19,14 +19,15 @@ const Shirt = () => {
   useFrame((state, delta) => {
     if (isRotating) {
       // Calculate the new rotation angle based on delta time
-      const newRotationY = rotationY + (0.5 * Math.PI * delta);
+      const newRotationY = rotationY + (0.2 * Math.PI * delta);
     
       // Check if the rotation has completed a full 360 degrees
       const isCompleteRotation = newRotationY >= Math.PI * 2;
     
-      // If the rotation has completed, reset the rotation angle
+      // If the rotation has completed, reset the rotation angle and stop rotating
       if (isCompleteRotation) {
         setRotationY(0);
+        setIsRotating(false);
       } else {
         setRotationY(newRotationY);
       }
@@ -37,7 +38,7 @@ const Shirt = () => {
   });
 
   const handleShirtClick = () => {
-    setIsRotating(!isRotating); // Toggle rotation state on click
+    setIsRotating(!isRotating); // Toggle rotation on click
   };
 
   return (
