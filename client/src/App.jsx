@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Canvas from "./canvas";
+import Contactus from "./pages/Contactus";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/contactus" element={<Contactus />} />
 
           <Route path="/" element={<Home />} />
 
