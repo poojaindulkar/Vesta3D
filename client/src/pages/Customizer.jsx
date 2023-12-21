@@ -53,7 +53,7 @@ const Customizer = () => {
     try {
       setGeneratingImg(true);
 
-      const response = await fetch('https:/vesta3d-server.onrender.com/api/v1/dalle', {
+      const response = await fetch('https://vesta3d-server.onrender.com/api/v1/dalle', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
